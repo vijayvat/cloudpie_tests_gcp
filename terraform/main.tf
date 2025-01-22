@@ -20,10 +20,6 @@ variable "project_id" {
 
 data "google_client_config" "current" {}
 
-output "project_id" {
-  value = data.google_client_config.current.project
-}
-
-output "account_email" {
-  value = data.google_client_config.current.email
+output "project_number" {
+  value = data.google_project.current.number
 }
