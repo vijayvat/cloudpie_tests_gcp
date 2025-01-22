@@ -15,6 +15,7 @@ provider "google" {
 variable "project_id" {
   description = "The ID of the GCP project to use."
   type        = string
+  default     = "vijayendar-gururaja"
 }
 
 data "google_client_config" "current" {}
