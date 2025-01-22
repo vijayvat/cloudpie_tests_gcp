@@ -1,9 +1,28 @@
-provider "aws" {
-  region = "us-west-2"
+terraform {
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 4.0"
+    }
+  }
 }
 
-data "aws_caller_identity" "current" {}
+provider "google" {
+  project = var.project_id
+  region  = "us-central1" # Change this to your preferred region
+}
 
-output "account_id" {
-  value = data.aws_caller_identity.current.account_id
+variable "project_id" {
+  description = "The ID of the GCP project to use."
+  type        = string
+}
+
+data "google_client_config" "current" {}
+
+output "project_id" {
+  value = data.google_client_config.current.project
+}
+
+output "account_email" {
+  value = data.google_client_config.current.email
 }
